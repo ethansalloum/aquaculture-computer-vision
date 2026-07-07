@@ -1,2 +1,18 @@
 # aquaculture-computer-vision
-Repository for ECE 499 Capstone Project - Lilypad-Mounted Multi-Modal Sensing for Net Pens &amp; Shellfish Leases
+Repository for ECE 499 Capstone Project - Lilypad-Mounted Multi-Modal Sensing for Net Pens and Shellfish Leases
+
+This repository will serve as a stepping stone for the computer vision aspect of Mostar Labs' aquaculture module for their Lilypad.
+
+The goal of our model is to:
+  •	Identify sea lice and other parasites on salmon
+  •	Identify other fish or marine lifeforms present in the salmon pens
+  •	Detect dangerous water conditions and harmful algae blooms 
+
+We will be using an NVIDIA Jetson Orin Nano to process motion detected video clips and generate object detection tracks and salmon species counts.
+A setup guide for the board can be found here: https://github.com/Salmon-Computer-Vision/salmon-computer-vision/blob/master/utils/jetson/README.md
+
+The dataset to be used is: https://dataverse.no/file.xhtml?persistentId=doi:10.18710/H5G3K5/QK355D&version=1.1
+
+Steps (to be continuously updated):
+  1) Train the model to correctly detect the presence of a fish in a frame.
+  2) 
