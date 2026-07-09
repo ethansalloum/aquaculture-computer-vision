@@ -10,6 +10,7 @@ The goal of our model is to:
 
 We will be using an NVIDIA Jetson Orin Nano to process motion detected video clips and generate object detection tracks and salmon species counts.
 A setup guide for the board can be found here: https://github.com/Salmon-Computer-Vision/salmon-computer-vision/blob/master/utils/jetson/README.md
+I think we will also need to install Jetpack: https://developer.nvidia.com/embedded/jetpack
 
 The dataset to be used is: https://dataverse.no/file.xhtml?persistentId=doi:10.18710/H5G3K5/QK355D&version=1.1
 
