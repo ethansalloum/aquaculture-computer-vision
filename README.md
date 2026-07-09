@@ -8,7 +8,7 @@ The goal of our model is to:
   •	Identify other fish or marine lifeforms present in the salmon pens
   •	Detect dangerous water conditions and harmful algae blooms 
 
-We will be using an NVIDIA Jetson Orin Nano to process motion detected video clips and generate object detection tracks and salmon species counts. The model to be used is YOLOv8 (https://yolov8.com/)
+We will be using an NVIDIA Jetson Orin Nano Super to process motion detected video clips and generate object detection tracks and salmon species counts. The model to be used is YOLOv8 (https://yolov8.com/)
 
 Ultralytics setup guide for the board with YOLOv8: https://docs.ultralytics.com/guides/nvidia-jetson#what-is-nvidia-jetson
 
