@@ -8,9 +8,14 @@ The goal of our model is to:
   •	Identify other fish or marine lifeforms present in the salmon pens
   •	Detect dangerous water conditions and harmful algae blooms 
 
-We will be using an NVIDIA Jetson Orin Nano to process motion detected video clips and generate object detection tracks and salmon species counts.
-A setup guide for the board can be found here: https://github.com/Salmon-Computer-Vision/salmon-computer-vision/blob/master/utils/jetson/README.md
+We will be using an NVIDIA Jetson Orin Nano to process motion detected video clips and generate object detection tracks and salmon species counts. The model to be used is YOLOv8 (https://yolov8.com/)
+
+Ultralytics setup guide for the board with YOLOv8: https://docs.ultralytics.com/guides/nvidia-jetson#what-is-nvidia-jetson
+
+Another setup guide from a similar project can be found here: https://github.com/Salmon-Computer-Vision/salmon-computer-vision/blob/master/utils/jetson/README.md
+
 I think we will also need to install Jetpack: https://developer.nvidia.com/embedded/jetpack
+
 
 The dataset to be used is: https://dataverse.no/file.xhtml?persistentId=doi:10.18710/H5G3K5/QK355D&version=1.1
 
