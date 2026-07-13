@@ -11,7 +11,7 @@ def main():
             epochs = 20, # cause small dataset sample
             batch = 4,
             patience = 5, # number of epochs to wait with little improvement to loss
-            imgsz = 416, # not 400 cause of mulitple of 32??
+            imgsz = 640,
             rect = True, # enables minimum padding
             cos_lr = False, #cosine learning rate (default)
             close_mosaic = 0, # data augmentation
