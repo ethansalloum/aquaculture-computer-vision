@@ -14,11 +14,13 @@ Ultralytics setup guide for the board with YOLOv8: https://docs.ultralytics.com/
 
 Another setup guide from a similar project can be found here: https://github.com/Salmon-Computer-Vision/salmon-computer-vision/blob/master/utils/jetson/README.md
 
-I think we will also need to install Jetpack: https://developer.nvidia.com/embedded/jetpack
+I think we will also need to install Jetpack (Jetpack 7 should work): https://developer.nvidia.com/embedded/jetpack
 
 
 The dataset to be used is: https://dataverse.no/file.xhtml?persistentId=doi:10.18710/H5G3K5/QK355D&version=1.1
 
 Steps (to be continuously updated):
-  1) Train the model to correctly detect the presence of a fish in a frame.
-  2) 
+  1) Set up outlines of the scripts and folders needed (done)
+  2) Download the dataset (done)
+  3) Train the model to correctly detect the presence of a fish in a frame.
+  4) 
