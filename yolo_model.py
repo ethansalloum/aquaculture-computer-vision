@@ -1,17 +1,20 @@
 from ultralytics import YOLO
 
-
 def main():
     # Load YOLOv8 pretrained
     model = YOLO("yolov8.pt")
 
     # https://docs.ultralytics.com/modes/train/#musgd-optimizer
     print("Starting training...")
-    model.train(data="dataset.yaml", 
+    model.train(
+            data="dataset.yaml", 
             epochs = 20, # cause small dataset sample
             batch = 4,
             patience = 5, # number of epochs to wait with little improvement to loss
             imgsz = 640,
+            project = "Program",
+            name = "norfisk_run",
+            overwrite = True,
             rect = True, # enables minimum padding
             cos_lr = False, #cosine learning rate (default)
             close_mosaic = 0, # data augmentation
@@ -30,7 +33,7 @@ def main():
             )
 
     # change so we know where this goes ( i think i sometimes use old one?)
-    best_model = YOLO("runs/detect/train/weights/best.pt")
+    best_model = YOLO("Program/norfisk_run/weights/best.pt")
 
     # https://docs.ultralytics.com/modes/predict/#inference-sources
     results = best_model.predict(
