@@ -3,7 +3,6 @@ path: ./dataset  # path to root dataset folder
 train: train/images
 val: val/images
 
-# Classes based on the NorFisk dataset profile
 names:
-  0: salmonid
-  1: saithe
+  0: fish
+  1: sea_lice
