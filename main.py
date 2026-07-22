@@ -18,13 +18,13 @@ CAMERA_SOURCE = 0
 
 # Threshold paths & metrics
 DIR_PATH = os.getcwd()
-MODEL_PATH = os.path.join(DIR_PATH, "Program", "norfisk_run", "weights", "best.pt")
-OUTPUT_CSV_PATH = os.path.join(DIR_PATH, "lilypad_biomass_report.csv")
+MODEL_PATH = os.path.join(DIR_PATH, "Program", "norfisk_run", "weights", "best.pt")        #path to YOLOv8 PyTorch model weights
+OUTPUT_CSV_PATH = os.path.join(DIR_PATH, "lilypad_biomass_report.csv")                     #export csv in main folder
 
 # Tweak these for your net-pen environment conditions
-MOTION_THRESHOLD_AREA = 5000  # Size of moving object to trigger YOLO
-MIN_TRACK_FRAMES = 3          # Filter out fleeting noise artifacts
-PIXELS_TO_CM_RATIO = 0.12     # Calibration metric (1 pixel = X cm at lens focus plane)
+MOTION_THRESHOLD_AREA = 5000                              #size of moving object to trigger YOLO
+MIN_TRACK_FRAMES = 3                                      #filter out fleeting noise artifacts
+PIXELS_TO_CM_RATIO = 0.12                                 #calibration metric (1 pixel = X cm at lens focus plane)
 
 def main():
     # 1. Initialize YOLO Model
@@ -110,16 +110,16 @@ def main():
 
     # Post-Processing: Compute total analytics upon shutdown
     print("\nCompiling final biomass diagnostics...")
-    lengths_dict = get_physical_lengths(tracked_boxes, PIXELS_TO_CM_RATIO, MIN_TRACK_FRAMES)
+    lengths_dict = get_physical_lengths(tracked_boxes, PIXELS_TO_CM_RATIO, MIN_TRACK_FRAMES)    #convert tracked bounding box pixel dimensions to real cm lengths
     
-    for fish_id, physical_len in lengths_dict.items():
+    for fish_id, physical_len in lengths_dict.items():                             #for each fish identity, append total frame count of this fish to master_records
         master_records.append({
             "Fish_Track_ID": fish_id,
             "Calculated_Length_CM": round(physical_len, 2),
             "Observations_Count": len(tracked_boxes[fish_id])
         })
         
-    if master_records:
+    if master_records:                                                             #if minimum 1 fish met the tracking threshold, convert list to a csv file
         df = pd.DataFrame(master_records)
         df.to_csv(OUTPUT_CSV_PATH, index=False)
         print(f"[LOG DATA] Log successfully structured and written to: {OUTPUT_CSV_PATH}")
