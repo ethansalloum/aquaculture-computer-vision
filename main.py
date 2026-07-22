@@ -58,25 +58,25 @@ def main():
             break
             
         # Motion Pre-processing
-        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
-        gray = cv2.GaussianBlur(gray, (21, 21), 0)
+        gray = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)                                               #convert colour to grayscale
+        gray = cv2.GaussianBlur(gray, (21, 21), 0)                                                   #smooth image by reducing high-frequency noise and detail
 
         if background_frame is None:
             background_frame = gray
             continue
 
         # Motion Filtering
-        frame_delta = cv2.absdiff(background_frame, gray)                                           #created if a pixel changes
-        _, thresh = cv2.threshold(frame_delta, 25, 255, cv2.THRESH_BINARY)                          #pixel change below 25 is discarded as ripple noise or static, make higher values white
-        thresh = cv2.dilate(thresh, None, iterations=2)                                             #merge white blobs (head vs tail) into single silhouette
-        contours, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)   #trace outline, wakes up YOLO if big enough
+        frame_delta = cv2.absdiff(background_frame, gray)                                            #created if a pixel changes
+        _, thresh = cv2.threshold(frame_delta, 25, 255, cv2.THRESH_BINARY)                           #pixel change below 25 is discarded as ripple noise or static, make higher values white
+        thresh = cv2.dilate(thresh, None, iterations=2)                                              #merge white blobs (head vs tail) into single silhouette
+        contours, _ = cv2.findContours(thresh.copy(), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)    #trace outline, wakes up YOLO if big enough
 
         # Identify Fish
-        motion_detected = False                                                  #start fresh frame assuming no movement
-        for contour in contours:                                                 #loop through every outline
-            if cv2.contourArea(contour) >= MOTION_THRESHOLD_AREA:                #if the blob is bigger than our fish threshold of 5000 pixels
-                motion_detected = True                                           #deploy AI tracking
-                (x, y, w, h) = cv2.boundingRect(contour)                         #draw green box around fish
+        motion_detected = False                                                                      #start fresh frame assuming no movement
+        for contour in contours:                                                                     #loop through every outline
+            if cv2.contourArea(contour) >= MOTION_THRESHOLD_AREA:                                    #if the blob is bigger than our fish threshold of 5000 pixels
+                motion_detected = True                                                               #deploy AI tracking
+                (x, y, w, h) = cv2.boundingRect(contour)                                             #draw green box around fish
                 cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
 
         # Hand-off execution to YOLOv8 + ByteTrack Tracker if movement is found
@@ -87,8 +87,8 @@ def main():
             # Run tracking directly on the single frame buffer
             results = model.track(
                 source=frame,
-                tracker="bytetrack.yaml",    #turn on tracking
-                persist=True,                #look at previous frames to see if the current fish matches a previous ID
+                tracker="bytetrack.yaml",                                          #turn on tracking
+                persist=True,                                                      #look at previous frames to see if the current fish matches a previous ID
                 conf=0.25,
                 verbose=False
             )
@@ -100,11 +100,11 @@ def main():
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 0, 0), 2)
 
         # Show stream displays (can comment out later for headless deployment)
-        cv2.imshow("LilyPad Multi-Modal Optical Stream", frame)    #output frame so we can see it
+        cv2.imshow("LilyPad Multi-Modal Optical Stream", frame)                    #output frame to viewer
         
-        if cv2.waitKey(1) & 0xFF == ord('q'):        #shut down at press of 'q'
+        if cv2.waitKey(1) & 0xFF == ord('q'):                                      #shut down at press of 'q'
             break
-        elif cv2.waitKey(1) & 0xFF == ord('r'):      #clear background_frame and recalibrate at press of 'r'
+        elif cv2.waitKey(1) & 0xFF == ord('r'):                                    #clear background_frame and recalibrate at press of 'r'
             background_frame = None
             print("Baseline environment profile recalibrated.")
 
