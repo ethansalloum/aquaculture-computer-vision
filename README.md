@@ -22,4 +22,18 @@ It contains about 2.5 GB of salmon pictures.
 *main.py*
 
 The main file stitches everything together from the YOLO model to the hardware. In order, it does the following:
-  1) 
+  1) Set a pixel and frame threshold to activate the model
+  2) Open camera stream with OpenCV library (640 x 480 pixels)
+  3) Temporarily convert image to grayscale for motion detection
+  4) If enough pixels in the frames change, colour those pixels white and trace its outline, wake up YOLO if the shape is big enough
+  5) Draw a green box around the outline of the fish
+  6) Hand off active frame to YOLO to detect fish and give it an ID
+  7) Save bounding box history for every detected ID
+  8) Show real-time feed to the user with overlaid status updates ("Tracking Engine Live" or "System Idle")
+  9) Recalibrate or shut down camera stream from the users input
+  10) Post-processing: Compute analytics upon shutdown (fish lengths and observation count)
+  11) Export analytics to a csv file
+
+*calc_lengths.py*
+
+This file
