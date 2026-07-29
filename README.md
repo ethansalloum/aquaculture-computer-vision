@@ -1,7 +1,7 @@
 # aquaculture-computer-vision
 Repository for ECE 499 Capstone Project - Lilypad-Mounted Multi-Modal Sensing for Net Pens and Shellfish Leases
 
-**Repository structure and Files Overview**
+**File Overview**
 
 ***main.py***
 
@@ -46,11 +46,15 @@ This file helps fine-tune a baseline YOLOv8 model with specific training hyperpa
 3) Out of all the training runs, find the most accurate one and save it as best_model
 4) Test the "best" model with a fresh set of images and save successful predictions
 
+***dataset.yaml***
+
+Acts as the bridge between the folder directory and the YOLO model during training. It points the training pipeline to training or validation images, and identifies the type of object being identified (0 for salmon, 1 for salmon with sea lice, 2 for biomass, etc)
+
 **Hardware**
 
-In practice, we would be using an NVIDIA Jetson Orin Nano Super in combination with either a PoE or USB camera.
+In a real-world implementation, we would use an NVIDIA Jetson Orin Nano Super in combination with either a PoE or USB camera.
 
-Configuring the board - Ultralytics and Jetpack 7.2 must be installed. See setup guides below" 
+Configuring the board - Ultralytics and Jetpack 7.2 must be installed. See setup guides below
 
 https://docs.ultralytics.com/guides/nvidia-jetson#what-is-nvidia-jetson
 https://developer.nvidia.com/embedded/jetpack
@@ -67,7 +71,7 @@ It contains about 2.5 GB of salmon pictures.
 
 Our computer vision work only includes identifying and recording lengths and observation counts of healthy salmon. No sea lice/parasite dataset could be found, and more code must be written once enough of this data is found or captured.
 
-2) Why calculate salmon lengths and how to make it more accurate
+2) Why calculate salmon lengths? How do we make this measurement more accurate?
 
 Calculating the sizes of identified salmon is important for parasite detection and health modeling. For example, a large fish with 2 parasites is manageable and not an immediate concern thanks to its immune system. However, a smaller fish with 2 parasites is at greater risk. Farm operators can get a better understanding of the severity of the situation rather than just seeing a total number of parasites.
 
@@ -80,3 +84,9 @@ Ways to get more accurate measurements include:
 
 3) Risk of processing constraints
 
+Currently with the healthy salmon scanning in place, the Jetson would have very minimal performance issues identifying up to several dozens of fish because it can get away with using a low 640x480 resolution. When the parasite detection is set up, the camera quality should be upgraded to at least 1080p to look for the few pixels containing parasites. This change will inevitably lower performance.
+
+A few tricks to increase performance during parasite detection are below.
+  a) Enable parasite detection only for fish closer to the camera
+  b) Convert YOLO weights to TensorRT. It is an SDK that optimizes PyTorch models, and should theoretically double FPS and cut VRAM usage in half
+  c) Frame skipping - Run YOLO every 2 or 3 frames, it will still be smooth
