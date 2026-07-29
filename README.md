@@ -87,6 +87,6 @@ Ways to get more accurate measurements include:
 Currently with the healthy salmon scanning in place, the Jetson would have very minimal performance issues identifying up to several dozens of fish because it can get away with using a low 640x480 resolution. When the parasite detection is set up, the camera quality should be upgraded to at least 1080p to look for the few pixels containing parasites. This change will inevitably lower performance.
 
 A few tricks to increase performance during parasite detection are below.
-  a) Enable parasite detection only for fish closer to the camera
-  b) Convert YOLO weights to TensorRT. It is an SDK that optimizes PyTorch models, and should theoretically double FPS and cut VRAM usage in half
-  c) Frame skipping - Run YOLO every 2 or 3 frames, it will still be smooth
+  - A. Enable parasite detection only for fish closer to the camera
+  - B. Convert YOLO weights to TensorRT. It is an SDK that optimizes PyTorch models, and should theoretically double FPS and cut VRAM usage in half
+  - C. Frame skipping - Run YOLO every 2 or 3 frames, it will still be smooth
