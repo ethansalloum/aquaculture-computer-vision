@@ -79,8 +79,8 @@ The method we have implemented to measure the length of a fish is not currently 
 
 Ways to get more accurate measurements include:
   - A. Constrained target zone - Set up LEDs to only capture fish within a 1 to 1.5 meter distance from the camera. Fish further than this would be too dark to track
-  b) Dual cameras - With two cameras with known focal lengths are set up a certain distance away, math can be completed to dynamically adjust the pixel ratio of        each frame
-  c) Depth-sensing cameras or underwater laser scalers can project light onto the fish, providing a depth map and a distance to the fish
+  - B. Dual cameras - With two cameras with known focal lengths are set up a certain distance away, math can be completed to dynamically adjust the pixel ratio of        each frame
+  - C. Depth-sensing cameras or underwater laser scalers can project light onto the fish, providing a depth map and a distance to the fish
 
 3) Risk of processing constraints
 
