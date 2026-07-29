@@ -69,7 +69,7 @@ It contains about 2.5 GB of salmon pictures.
 
 1) Parasite detection to be implemented in the future
 
-Our computer vision work only includes identifying and recording lengths and observation counts of healthy salmon. No sea lice/parasite dataset could be found, and more code must be written once enough of this data is found or captured.
+Our computer vision work only includes identifying and recording lengths and observation counts of healthy salmon. No sea lice/parasite dataset could be found, and more code must be written once enough of this data is found or captured. We would want the model to save images of fish with sever parasite infestations so the farmer could have more than a simple lice count.
 
 2) Why calculate salmon lengths? How do we make this measurement more accurate?
 
