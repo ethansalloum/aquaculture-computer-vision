@@ -78,7 +78,7 @@ Calculating the sizes of identified salmon is important for parasite detection a
 The method we have implemented to measure the length of a fish is not currently entirely accurate. Some measures are taken to help this concern by using a minimum pixel threshold that the fish must surpass for the model to activate. However, once this threshold is reached, the fish can swim closer and closer to the camera, increasing its size measurement. The current conversion of pixels to centimeters is a 1:0.12 ratio, so an average 70 cm salmon would take up around 580 of the 640 pixels wide. 
 
 Ways to get more accurate measurements include:
-  a) Constrained target zone - Set up LEDs to only capture fish within a 1 to 1.5 meter distance from the camera. Fish further than this would be too dark to track
+  - A. Constrained target zone - Set up LEDs to only capture fish within a 1 to 1.5 meter distance from the camera. Fish further than this would be too dark to track
   b) Dual cameras - With two cameras with known focal lengths are set up a certain distance away, math can be completed to dynamically adjust the pixel ratio of        each frame
   c) Depth-sensing cameras or underwater laser scalers can project light onto the fish, providing a depth map and a distance to the fish
 
