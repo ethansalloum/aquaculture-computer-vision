@@ -81,16 +81,15 @@ def main():
 
         # Hand-off execution to YOLOv8 + ByteTrack Tracker if movement is found
         if motion_detected:
-            cv2.putText(frame, "TRACKING ENGINE ACTIVE", (10, 30), 
-                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
+            cv2.putText(frame, "TRACKING ENGINE ACTIVE", (10, 30),                 #draw bright red "TRACKING ENGINE ACTIVE" label in top left corner of video
+                        cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)             
             
-            # Run tracking directly on the single frame buffer
-            results = model.track(
+            results = model.track(                                                 #run tracking directly on the single frame buffer
                 source=frame,
-                tracker="bytetrack.yaml",                                          #turn on tracking
+                tracker="bytetrack.yaml",                                          #turn on tracking (built into Ultralytics library)
                 persist=True,                                                      #look at previous frames to see if the current fish matches a previous ID
-                conf=0.25,
-                verbose=False
+                conf=0.25,                                                         #confidence filter
+                verbose=False                                                      #supress console output spam
             )
             
             # Map tracking identities and spatial configurations, if nothing > 5000 pixels go idle
