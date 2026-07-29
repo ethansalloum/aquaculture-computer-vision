@@ -56,8 +56,7 @@ In a real-world implementation, we would use an NVIDIA Jetson Orin Nano Super in
 
 Configuring the board - Ultralytics and Jetpack 7.2 must be installed. See setup guides below
 
-https://docs.ultralytics.com/guides/nvidia-jetson#what-is-nvidia-jetson
-https://developer.nvidia.com/embedded/jetpack
+https://docs.ultralytics.com/guides/nvidia-jetson#what-is-nvidia-jetson | https://developer.nvidia.com/embedded/jetpack
 
 **Dataset**
 
